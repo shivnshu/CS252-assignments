@@ -7,7 +7,7 @@
 
 /*Check Availability for PORT*/
 #define PORT 5433
-#define MAX 4096
+#define MAX 100000
 
 int main(){
     int welcomeSocket, newSocket, n;
@@ -49,18 +49,23 @@ int main(){
     /*---- Receive the request and accordingly generate .html file ----*/
     recv(newSocket, req, MAX, 0);
     printf("Request received successfully\n");
-    char opening[MAX] = "<!DOCTYPE HTML>\n<html>\n<head><title>CS252</title></head>\n<body>\n<table>\n", temp[2]="0";
-    char *closing = "</table>\n</body>\n</html>";
+    //char opening[MAX] = "<!DOCTYPE HTML>\n<html>\n<head><title>CS252</title></head>\n<body>\n<table>\n", temp[2]="0";
+    //char *closing = "</table>\n</body>\n</html>";
     char *token = strtok(req, " "), image_name[5];
     int quantity=0;
+    int cats=0, cars=0, dogs=0, trucks=0;
     while(token != NULL){
         if(strlen(token)==1 && token[0]>='1' && token[0]<='4') quantity=token[0]-'0';
         else if(strcmp(token,"and")!=0){
-            if(strncmp(token,"dog",3)==0) strcpy(image_name,"dog");
-            if(strncmp(token,"cat",3)==0) strcpy(image_name,"cat");
-            if(strncmp(token,"car",3)==0) strcpy(image_name,"car");
-            if(strncmp(token,"tru",3)==0) strcpy(image_name,"truck");
-            for(int i=1;i<=quantity;i++){
+            if(strncmp(token,"dog",3)==0) //strcpy(image_name,"dog");
+                dogs += quantity;
+            if(strncmp(token,"cat",3)==0) //strcpy(image_name,"cat");
+                cats+=quantity;
+            if(strncmp(token,"car",3)==0) //strcpy(image_name,"car");
+                cars+=quantity;
+            if(strncmp(token,"tru",3)==0) //strcpy(image_name,"truck");
+                trucks+=quantity;
+            /*for(int i=1;i<=quantity;i++){
                 strcat(opening,"<tr>\n<td>");
                 temp[0]=i+'0';
                 strcat(opening,temp);
@@ -69,13 +74,24 @@ int main(){
                 strcat(opening,temp);
                 strcat(opening,".jpeg");
                 strcat(opening,"\" height=\"60\" width=\"60\"></td>\n</tr>\n");
-            }
-        }
+            }*/
+        }        
         token = strtok(NULL, " ");
     }
-    strcat(opening,closing);
+    //strcat(opening,closing);
+    char *buffer=(char*)malloc(sizeof(int));
+    char str[]="bash generate.sh ";
+    sprintf(buffer,"%d ",cars);
+    strcat(str,buffer);
+    sprintf(buffer,"%d ",dogs);
+    strcat(str,buffer);
+    sprintf(buffer,"%d ",trucks);
+    strcat(str,buffer);
+    sprintf(buffer,"%d ",cats);
+    strcat(str,buffer);
+    system(str);
     printf("file generated successfully\n");
-    send(newSocket, opening, MAX, 0);  
+    send(newSocket, "option.html", MAX, 0);  
     printf("Data sent to client\n");
     return 0;
 }

@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
   connect(clientSocket, (struct sockaddr *) &serverAddr, addr_size);
 
   /*---- Send the request to the server ----*/
-  printf("Enter your request eg - 3 cat :   ");
+  printf("Enter your request eg - 3 cats 4 trucks and 1 dog :   ");
   fgets(request, MAX, stdin);
   send(clientSocket, request, sizeof(request), 0);
   printf("Request sent successfully\n");

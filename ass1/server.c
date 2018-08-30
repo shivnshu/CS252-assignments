@@ -26,7 +26,7 @@ int main(){
     /* Set port number, using htons function to use proper byte order */
     serverAddr.sin_port = htons(PORT);
     /* Set IP address to localhost */
-    serverAddr.sin_addr.s_addr = inet_addr("0.0.0.0");
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
     /* Set all bits of the padding field to 0 */
     memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
 
@@ -81,6 +81,7 @@ int main(){
     //strcat(opening,closing);
     char *buffer=(char*)malloc(sizeof(int));
     char str[]="bash generate.sh ";
+    char *fileData[170000];
     sprintf(buffer,"%d ",cars);
     strcat(str,buffer);
     sprintf(buffer,"%d ",dogs);
@@ -91,7 +92,9 @@ int main(){
     strcat(str,buffer);
     system(str);
     printf("file generated successfully\n");
-    send(newSocket, "option.html", MAX, 0);  
+    FILE *fp = fopen("option.html", "ab+");
+    fread(fileData, 1, 170000, fp);
+    send(newSocket, fileData, 170000, 0);  
     printf("Data sent to client\n");
     return 0;
 }

@@ -5,11 +5,11 @@
 #include <string.h>
 #include <arpa/inet.h>
 //#include <unistd.h>
-#define MAX 100000
+#define MAX 170000
 
 #define SHELLSCRIPT "\
 #/bin/bash \n\
-google-chrome response.html\
+xdg-open response.html\
 "
 
 int main(int argc, char *argv[]){

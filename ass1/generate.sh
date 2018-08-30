@@ -52,4 +52,4 @@ do
 	"
 done
 echo "$html_top$str$html_bot" >option.html
-xdg-open option.html
+#xdg-open option.html

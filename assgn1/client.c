@@ -4,8 +4,6 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <arpa/inet.h>
-/* Check availability for PORT */
-#define PORT 5433
 #define MAX 4096
 
 #define SHELLSCRIPT "\
@@ -13,23 +11,29 @@
 google-chrome response.html\
 "
 
-int main(){
+int main(int argc, char *argv[]){
+  if(argc<3){
+      printf("pass the IP and portno of server\n");
+      return 0;
+  }
   int clientSocket;
   char buffer[MAX], request[MAX];
   struct sockaddr_in serverAddr;
   socklen_t addr_size;
-
+  struct hostent *server;
+  int PORT = atoi(argv[2]);
   /*---- Create the socket. The three arguments are: ----*/
   /* 1) Internet domain 2) Stream socket 3) Default protocol (TCP in this case) */
   clientSocket = socket(PF_INET, SOCK_STREAM, 0);
-
+  server = gethostbyname(argv[1]);
   /*---- Configure settings of the server address struct ----*/
   /* Address family = Internet */
   serverAddr.sin_family = AF_INET;
   /* Set port number, using htons function to use proper byte order */
   serverAddr.sin_port = htons(PORT);
   /* Set IP address to localhost */
-  serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+  //bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
+  memcpy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
   /* Set all bits of the padding field to 0 */
   memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
 
@@ -48,7 +52,7 @@ int main(){
   FILE *fptr = fopen("response.html","w");
   fprintf(fptr,"%s", buffer);
   fclose(fptr);
-  //system(SHELLSCRIPT);
+  system(SHELLSCRIPT);
   
   return 0;
 }

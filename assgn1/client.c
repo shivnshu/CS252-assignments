@@ -4,7 +4,8 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <arpa/inet.h>
-#define MAX 4096
+//#include <unistd.h>
+#define MAX 100000
 
 #define SHELLSCRIPT "\
 #/bin/bash \n\
@@ -20,20 +21,20 @@ int main(int argc, char *argv[]){
   char buffer[MAX], request[MAX];
   struct sockaddr_in serverAddr;
   socklen_t addr_size;
-  struct hostent *server;
+  //struct hostent *server;
+  //server = gethostbyname(argv[1]);
   int PORT = atoi(argv[2]);
   /*---- Create the socket. The three arguments are: ----*/
   /* 1) Internet domain 2) Stream socket 3) Default protocol (TCP in this case) */
   clientSocket = socket(PF_INET, SOCK_STREAM, 0);
-  server = gethostbyname(argv[1]);
   /*---- Configure settings of the server address struct ----*/
   /* Address family = Internet */
   serverAddr.sin_family = AF_INET;
   /* Set port number, using htons function to use proper byte order */
   serverAddr.sin_port = htons(PORT);
   /* Set IP address to localhost */
-  //bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
-  memcpy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
+  serverAddr.sin_addr.s_addr = inet_addr(argv[1]);
+  //memcpy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
   /* Set all bits of the padding field to 0 */
   memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
 

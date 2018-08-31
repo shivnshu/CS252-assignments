@@ -5,7 +5,8 @@
 #include <string.h>
 #include <arpa/inet.h>
 //#include <unistd.h>
-#define MAX 170000
+#define MAX 1700000
+#define MAX_REQ 100
 
 #define SHELLSCRIPT "\
 #/bin/bash \n\
@@ -18,7 +19,7 @@ int main(int argc, char *argv[]){
       return 0;
   }
   int clientSocket;
-  char buffer[MAX], request[MAX];
+  char buffer[MAX], request[MAX_REQ];
   struct sockaddr_in serverAddr;
   socklen_t addr_size;
   //struct hostent *server;

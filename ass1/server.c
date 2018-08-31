@@ -7,7 +7,7 @@
 
 /*Check Availability for PORT*/
 #define PORT 5433
-#define MAX 100000
+#define MAX 170000
 
 int main(){
     int welcomeSocket, newSocket, n;
@@ -81,7 +81,7 @@ int main(){
     //strcat(opening,closing);
     char *buffer=(char*)malloc(sizeof(int));
     char str[]="bash generate.sh ";
-    char *fileData[170000];
+    char *fileData=NULL;
     sprintf(buffer,"%d ",cars);
     strcat(str,buffer);
     sprintf(buffer,"%d ",dogs);
@@ -92,9 +92,17 @@ int main(){
     strcat(str,buffer);
     system(str);
     printf("file generated successfully\n");
-    FILE *fp = fopen("option.html", "ab+");
-    fread(fileData, 1, 170000, fp);
-    send(newSocket, fileData, 170000, 0);  
+    /*FILE *fp = fopen("option.html", "ab+");
+    fread(fileData, 1, MAX, fp);*/
+    FILE *fptr = fopen("option.html","r");
+    fseek(fptr, 0, SEEK_END);
+    long fsize = ftell(fptr);
+    fseek(fptr, 0, SEEK_SET);
+    fileData = malloc(fsize + 1);
+    fread(fileData, fsize, 1, fptr);
+    fclose(fptr);	
+    fileData[fsize] = 0;
+    send(newSocket, fileData, fsize, 0);  
     printf("Data sent to client\n");
     return 0;
 }

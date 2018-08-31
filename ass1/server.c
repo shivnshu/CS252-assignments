@@ -4,6 +4,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 
 /*Check Availability for PORT*/
 #define PORT 5433
@@ -104,5 +105,6 @@ int main(){
     fileData[fsize] = 0;
     send(newSocket, fileData, fsize, 0);  
     printf("Data sent to client\n");
+    close(welcomeSocket);
     return 0;
 }

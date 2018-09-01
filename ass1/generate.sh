@@ -2,13 +2,23 @@ html_top="<html>
 <head><title>Assignment_1</title></head>
 <body>"
 html_bot="
+</center>
 <body>
 <html>"
 cars=$1
 dogs=$2
 trucks=$3
 cats=$4
-str=""
+str="<center>
+"
+if [[ $cars -gt 0 ]]
+then
+str="$str
+<h4><u>Cars</u></h4>
+<br>
+"
+fi
+
 for i in `seq 1 $cars`;
 do
 	var="car$i.jpeg"
@@ -18,6 +28,14 @@ do
 	<img src=\"$embedded_data\" height=\"256\"  width=\"256 \" >
 	"
 done
+
+if [[ $dogs -gt 0 ]]
+then
+str="$str
+<h4><u>Dogs</u></h4>
+<br>
+"
+fi
 
 for i in `seq 1 $dogs`;
 do
@@ -30,6 +48,15 @@ do
 	"
 done
 
+if [[ $trucks -gt 0 ]]
+then
+str="$str
+<h4><u>Trucks</u></h4>
+<br>
+"
+fi
+
+
 for i in `seq 1 $trucks`;
 do
 	var="truck$i.jpeg"
@@ -40,6 +67,15 @@ do
 	<img src=\"$embedded_data\" height=\"256\"  width=\"256 \" >
 	"
 done
+
+if [[ $cats -gt 0 ]]
+then
+str="$str
+<h4><u>Cats</u></h4>
+<br>
+"
+fi
+
 
 for i in `seq 1 $cats`;
 do

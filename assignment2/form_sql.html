@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>EMPLOYEES DATA QUERY</title>
+<style>
+form.form{
+  border-style: groove; 
+  margin-top: 70px;
+  margin-left: 305px;
+  padding-top: 15px;
+  padding-left: 50px;
+  width: 600px;
+  border-radius: 20px;
+  box-shadow: 5px 5px #888888;
+}
+input.submit{
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+div.header{
+  font-size: 25px;
+  margin-left: 405px;
+  color: green;
+  padding-top: 20px;
+}
+td{
+  height: 30px;
+}
+</style>
+</head>
+
+<body style="background-color:#D8D8D8;">
+
+<div class="header">Query the Employees Database</div>
+
+<form class="form" method="post" action="try1.php">
+<table>
+<tr>
+<th rowspan="3">Query1: </th> <td>a.) Employee ID </td> <td> <input type="text" name="emp_id" placeholder="emp_id"> </td> </tr>
+        <tr> <td> b.) Last Name </td> <td> <input type="text" name="last_name" placeholder="last_name"> </td> </tr>
+        <tr> <td> c.) Department  </td> <td> <select name="dept_name">
+                          <option value="Customer Service">Customer Service</option>
+                          <option value="Development">Development</option>
+                          <option value="Finance">Finance</option>
+                          <option value="Human Resources">Human Resources</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Production">Production</option>
+                          <option value="Quality Management">Quality Management</option>
+                          <option value="Research">Research</option>
+                          <option value="Sales">Sales</option>
+                          <option value="dept_name" selected>Department Name</option>
+                        </select> </td> </tr>
+
+<tr>      
+<th>Query2: </th> <td>Largest Department</td> <td><input type="radio" name="radio" value="radio1"> </td>
+</tr>
+
+<tr>
+<th>Query3: </th> <td> Ordered tenure of department</td> 
+        <td><select name="dept_name_tenure">
+                          <option value="Customer Service">Customer Service</option>
+                          <option value="Development">Development</option>
+                          <option value="Finance">Finance</option>
+                          <option value="Human Resources">Human Resources</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Production">Production</option>
+                          <option value="Quality Management">Quality Management</option>
+                          <option value="Research">Research</option>
+                          <option value="Sales">Sales</option>
+                          <option value="dept_name" selected>Department Name</option>
+         </select> </td>
+</tr>
+
+<tr>
+<th>Query4: </th> <td> Gender ratio in department</td>
+        <td><select name="gender_ratio">
+                          <option value="Customer Service">Customer Service</option>
+                          <option value="Development">Development</option>
+                          <option value="Finance">Finance</option>
+                          <option value="Human Resources">Human Resources</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Production">Production</option>
+                          <option value="Quality Management">Quality Management</option>
+                          <option value="Research">Research</option>
+                          <option value="Sales">Sales</option>
+                          <option value="dept_name" selected>Department Name</option>
+         </select> </td>
+</tr>
+
+<tr>
+<th>Query5: </th> <td>Gender Pay Ratio in department</td>
+        <td><select name="gender_pay_ratio">
+                          <option value="Customer Service">Customer Service</option>
+                          <option value="Development">Development</option>
+                          <option value="Finance">Finance</option>
+                          <option value="Human Resources">Human Resources</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Production">Production</option>
+                          <option value="Quality Management">Quality Management</option>
+                          <option value="Research">Research</option>
+                          <option value="Sales">Sales</option>
+                          <option value="dept_name" selected>Department Name</option>
+         </select> </td>
+</tr>
+</table>
+<input class="submit" type="submit">
+
+</form>
+
+</body>
+
+</html>

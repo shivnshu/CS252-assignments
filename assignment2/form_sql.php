@@ -27,6 +27,10 @@ div.query{
   font-size: 20px;
   margin-left: 150px;
 }
+.date{
+  padding-left: 3px;
+  padding-right: 20px;
+}
 </style>
 </head>
 
@@ -122,7 +126,7 @@ div.query{
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
         echo "<table class=\"records\"> <tr> 
-             <th>emp_no</th> <th>first_name</th> <th>last_name</th> <th>gender</th> <th>fom_date</th> <th>to_date</th> <th>tenure</th> 
+             <th>emp_no</th> <th>first_name</th> <th>last_name</th> <th>gender</th> <th class=\"date\">fom_date</th> <th>to_date</th> <th>tenure(days)</th> 
              </tr>";
         while( $row = $result->fetch_assoc() ){
           echo "<tr>";
@@ -130,7 +134,7 @@ div.query{
           echo "<td>".$row['first_name']."</td>";
           echo "<td>".$row['last_name']."</td>";
           echo "<td>".$row['gender']."</td>";
-          echo "<td>".$row['from_date']."</td>";
+          echo "<td class=\"date\">".$row['from_date']."</td>";
           echo "<td>".$row['to_date']."</td>";
           echo "<td>".$row['tenure']."</td>";
           echo "</tr>";

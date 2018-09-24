@@ -159,9 +159,31 @@ div.query{
       echo "</br> <div class=\"query\">Gender Ratio (male/female): ". ($males / $females) . "</div> </br>";
     }
     elseif ( isset($_POST['gender_pay_ratio']) and $_POST['gender_pay_ratio']!="dept_name" ) {
-      $dept = $_POST['gender_ratio'];
+      $dept = $_POST['gender_pay_ratio'];
       echo "<div class=\"query\"> Query 5: Gender Pay Ratio of Department --> ".$dept. " </div> </br>";
-      $sql = "";
+      $sql = "SELECT dept_no FROM departments WHERE dept_name=\"$dept\"";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $dept_n = $row['dept_no'];
+      $sql = "SELECT title, SUM(CASE WHEN gender='M' then salary END)as male_salary, SUM(CASE WHEN gender='F' then salary END)as female_salary FROM (SELECT temp2.*, employees.gender FROM (SELECT emp_no, title, AVG(salary) as salary FROM (SELECT * from (SELECT s.salary, s.sfrom_date, s.sto_date, t.emp_no, t.tfrom_date, t.tto_date, t.title FROM ( SELECT * FROM (SELECT salaries.salary, salaries.from_date AS sfrom_date, salaries.to_date AS sto_date, dept_emp.* FROM salaries INNER JOIN dept_emp ON dept_emp.emp_no=salaries.emp_no)temp WHERE ( (sfrom_date>from_date AND sfrom_date<to_date) OR (sto_date>from_date AND sto_date<to_date) ) )s INNER JOIN ( SELECT * FROM (SELECT dept_emp.*, titles.title, titles.from_date AS tfrom_date, titles.to_date AS tto_date FROM dept_emp INNER JOIN titles ON titles.emp_no=dept_emp.emp_no WHERE dept_no='$dept_n')temp WHERE ( (tto_date>=from_date AND tto_date<=to_date) OR (tfrom_date>=from_date AND tfrom_date<=to_date) ) )t ON t.emp_no=s.emp_no)temp WHERE ( (tfrom_date>=sfrom_date AND tto_date<=sto_date) OR (tto_date>=sfrom_date AND tto_date<=sto_date) ) )temp1 GROUP BY emp_no, title)temp2 INNER JOIN employees ON employees.emp_no=temp2.emp_no)temp3 GROUP BY title;";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        echo "<table class=\"records\"> <tr> 
+             <th> Title </th> <th> Male Salary </th> <th> Female Salary </th> <th> Ratio(male/female) </th>
+             </tr>";
+        while( $row = $result->fetch_assoc() ){
+          echo "<tr>";
+          echo "<td>".$row['title']."</td>";
+          echo "<td>".$row['male_salary']."</td>";
+          echo "<td>".$row['female_salary']."</td>";
+          echo "<td>".($row['male_salary'] / $row['female_salary'])."</td>";
+          echo "</tr>";
+        }
+        echo "</table>";
+      }
+      else{
+        echo "No data found in the database!</br>";
+      }
     }
   }
 ?>

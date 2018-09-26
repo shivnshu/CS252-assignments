@@ -20,7 +20,7 @@ table.records{
   padding-top: 8px;
   padding-left: 10px;
   padding-right: 10px;
-  padding-bottom: 5px;
+  padding-bottom: 5px;  
 }
 div.query{
   color: midnightblue;
@@ -31,11 +31,23 @@ div.query{
   padding-left: 3px;
   padding-right: 20px;
 }
+div.nodata{
+  color: red;
+  margin-left: 290px;
+  font-size: 20px;
+}
+div.goback{
+  color: midnightblue;
+  font-size: 17px;
+  margin-left: 1000px;
+  position: fixed;
+}
 </style>
 </head>
 
 <body style="background-color:#D8D8D8;">
 <div class="header"> Employees database </div>
+<div class="goback"><a href="form_sql.html">Return to the home page</a></div>
 <?php
 
   // set connection parameters
@@ -73,7 +85,7 @@ div.query{
         echo "</table>";
       }  
       else {
-        echo "No data found in the database!</br>";
+        echo "<div class=\"nodata\">No data found in the database!</div>";
       } 
   }
   
@@ -142,7 +154,7 @@ div.query{
         echo "</table>";
       }
       else{
-        echo "No data found in the database!</br>";
+        echo "<div class=\"nodata\">No data found in the database!</div>";
       }
     }
     elseif ( isset($_POST['gender_ratio']) and $_POST['gender_ratio']!="dept_name" ) {
@@ -156,7 +168,7 @@ div.query{
       //$ratio = $males/$females;
       echo "<table class=\"records\"> <tr> <th>Males</th> <th>Females</th> </tr>";
       echo "<tr> <td>".$males." </td> <td>".$females."</td> </tr> </table>";
-      echo "</br> <div class=\"query\">Gender Ratio (male/female): ". ($males / $females) . "</div> </br>";
+      echo "</br> <div class=\"query\">Gender Ratio (male/female): ". round(($males / $females),2). "</div> </br>";
     }
     elseif ( isset($_POST['gender_pay_ratio']) and $_POST['gender_pay_ratio']!="dept_name" ) {
       $dept = $_POST['gender_pay_ratio'];
@@ -174,15 +186,15 @@ div.query{
         while( $row = $result->fetch_assoc() ){
           echo "<tr>";
           echo "<td>".$row['title']."</td>";
-          echo "<td>".$row['male_salary']."</td>";
-          echo "<td>".$row['female_salary']."</td>";
-          echo "<td>".($row['male_salary'] / $row['female_salary'])."</td>";
+          echo "<td>".round($row['male_salary'],2)."</td>";
+          echo "<td>".round($row['female_salary'],2)."</td>";
+          echo "<td>".round(($row['male_salary'] / $row['female_salary']),2)."</td>";
           echo "</tr>";
         }
         echo "</table>";
       }
       else{
-        echo "No data found in the database!</br>";
+        echo "<div class=\"nodata\">No data found in the database!</div>";
       }
     }
   }

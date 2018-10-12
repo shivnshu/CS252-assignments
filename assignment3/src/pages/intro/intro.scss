@@ -1,0 +1,21 @@
+page-intro {
+      .center-text {
+        text-align: bottom;
+        font-size: 6vw;
+        color: color($colors,light, base);
+        text-transform: capitalize;
+        margin-top:30px;
+        margin-bottom: 10px;
+      }
+     
+      .btn img {  
+        left: 50%;
+        margin-left: -15px; /* 1/2 of total width of your img */
+        top: 50%;
+        margin-top: -15px; /* 1/2 of total height of your img */
+        position: absolute;
+        
+    } 
+    
+      .special { height: 18% !important; margin: 5vw 3vw 0 !important; padding: 0 !important;width:250px; }
+}

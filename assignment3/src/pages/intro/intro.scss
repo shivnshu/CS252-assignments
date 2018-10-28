@@ -7,15 +7,27 @@ page-intro {
         margin-top:30px;
         margin-bottom: 10px;
       }
-     
-      .btn img {  
+
+      .btn img {
         left: 50%;
         margin-left: -15px; /* 1/2 of total width of your img */
         top: 50%;
         margin-top: -15px; /* 1/2 of total height of your img */
         position: absolute;
-        
-    } 
-    
-      .special { height: 18% !important; margin: 5vw 3vw 0 !important; padding: 0 !important;width:250px; }
+
+    }
+
+    .login-background {
+      background: url("../../assets/imgs/back.jpeg") no-repeat center fixed;
+      background-size: cover;
+    }
+    #clickme{
+      height: 20%;
+    }
+    .special{
+      margin-left: 30%;
+      margin-top: 60%;
+    }
+
+      // .special { height: 18% !important; margin: 5vw 3vw 0 !important; padding: 0 !important;width:250px; }
 }

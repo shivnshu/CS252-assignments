@@ -41,32 +41,6 @@ export class IntroPage {
   openclient(){
     this.navCtrl.push(ClientPage);
   }
-  update(){
-    
-    this.storage.get('mobile').then((val) => {
-      if(!val)
-      {
-        alert("You are not regisered yet");
-      }
-      else{
-        let headers=new Headers();   
-        headers.append('Content-Type','application/json');
-        let body={
-          ID:parseInt(val),
-          Latitude:this.lat,
-          Longitude:this.long,
-          //Latitude:"125.32",
-          //Longitude:"120.41",
-          //SearchParameter:"10"    
-        };
-        this.http.post(' http://localhost:8000/update_transport_location',JSON.stringify(body),{headers:headers}).subscribe(data=>{
-          console.log(data);
-        });
 
-
-      }
-      
-    });
-  }
 
 }

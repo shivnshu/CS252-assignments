@@ -37,7 +37,7 @@ include_once 'includes/functions.php';
         }
         if(count($suggestions)>0)
         {
-            echo '<span style="color:green;">You may try these Usernames :</span>';
+           echo '<span style="color:green;">You may try these Usernames :</span>';
             echo "<ol>";
             for($i=0; $i<count($suggestions); $i++)
             {

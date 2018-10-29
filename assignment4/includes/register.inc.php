@@ -24,6 +24,7 @@ $error_msg = "";
 $suggestions=array();
 
 
+
 if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
@@ -78,16 +79,17 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
             //$res->execute();
             //$res->store_result();
             $names_left=5;
-            $count=0;
+            $primes=array(1087,1103,1181,1277,1289,1409,1511,1583,1619,1697,1721,1787,1823,1879,1907,1949,2027);
             $taken=array();
             $x=0;
+            
             while($row = $result->fetch_assoc()) {
                  $taken[$x]=$row["username"];
                  $x=$x+1;               
             }
             while($names_left>0){
-                $count++;
-            
+                $random_keys=array_rand($primes,1);
+                $count=(rand(1,100)*10000)%$primes[$random_keys];                    
                 if( !in_array($username . $count, $taken) ){
                     $suggestions[] = $username . $count;
                     $names_left--;

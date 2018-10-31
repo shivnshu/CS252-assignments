@@ -41,6 +41,12 @@ if (login_check($mysqli) == true) {
             function closeForm() {
                 document.getElementById("myForm").style.display = "none";
             }
+            
+            function Fun()
+            {
+            alert('Such a Username does not Exist'); // this is the message in ""
+            }
+
         </script>
         <style>
             body {font-family: Arial, Helvetica, sans-serif;}
@@ -117,6 +123,19 @@ if (login_check($mysqli) == true) {
     </head>
     <body>
         <?php
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username=$_REQUEST["username"];
+            //echo 'Click on this link to generate a new password:<a href="ret.php?user_name='.$username.'">retreive_password/?'.$username.'</a>';
+            $sq = 'SELECT * FROM members WHERE username="'.$username.'";';
+            $result = $mysqli->query($sq);
+            if($row = $result->fetch_assoc()) {
+                header('Location:includes/ret.php?user_name='.$username.'');
+                exit();
+            }
+            else echo "<script>Fun()</script>";
+
+        }
         if (isset($_GET['error'])) {
             echo '<p class="error">Error Logging In!</p>';
         }
@@ -136,16 +155,13 @@ if (login_check($mysqli) == true) {
         <button class="open-button" onclick="openForm()">Forgot Password?</button>
 
         <div class="form-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
-            <h1>Login</h1>
+        <form action="" method="post" class="form-container"  >
+            
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
 
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn">Retreive Password</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </form>
         </div>

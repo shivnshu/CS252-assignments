@@ -64,8 +64,8 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
             Confirm New password: <input type="password"
                                name="confirmpwd"
                                id="confirmpwd" /><br>
-            <input type="hidden" name="username" id="username" value=<? echo $username ?> />
-            <input type="hidden" name="email" id="email" value=<? echo $email?> />
+            <input type="hidden" name="username" id="username" value=<?php echo $username ?> />
+            <input type="hidden" name="email" id="email" value=<?php echo $email?> />
 
             <input type="button"
                     value="Change Password"

@@ -130,12 +130,13 @@ if (login_check($mysqli) == true) {
             $sq = 'SELECT salt FROM members WHERE username="'.$username.'";';
             $result = $mysqli->query($sq);
             if($row = $result->fetch_assoc()) {
-                $secret = $row["salt"];
-                $URL="includes/ret.php?user_name=".$username."&secret=".$secret."";
+                // $secret = $row["salt"];
+                // $URL="includes/ret.php?user_name=".$username."&secret=".$secret."";
+                $URL = "includes/forgot.php?username=".$username."";
                 echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
                 echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
-                //header('Location: includes/ret.php?user_name='.$username.'');
-                //exit();
+                // header('Location: includes/ret.php?username='.$username.'');
+                // exit();
             }
             else echo "<script>notFoundAlert()</script>";
 

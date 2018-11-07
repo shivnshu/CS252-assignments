@@ -84,7 +84,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
                             this.form.username,
                             this.form.email,
                             this.form.password,
-                            this.form.confirmpwd);" / style="margin-top: 5%; margin-bottom: 2%;">
+                            this.form.confirmpwd);" style="margin-top: 5%; margin-bottom: 2%;" />
 
         </form>
 </body>

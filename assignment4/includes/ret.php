@@ -2,10 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../styles/main.css" />
+    <script type="text/JavaScript" src="../js/password_strength.js"></script>
     <script type="text/JavaScript" src="../js/sha512.js"></script>
     <script type="text/JavaScript" src="../js/forms.js"></script>
 </head>
-<body>
+<body style="background-color:#cfdcf7;">
 <?php
 
 include_once 'db_connect.php';
@@ -56,14 +59,22 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 ?>
-<h2>WELCOME TO PASSWORD RETREIVAL SERVICE</h2>
-<form action="" method="post" name="registration_form">
-            New Password: <input type="password"
+<h2 style="margin-left: 5%;">WELCOME TO PASSWORD RETREIVAL SERVICE</h2>
+<form action="" method="post" name="registration_form" class="set_password_form">
+  <table>
+    <tr>
+      <th>New Password: </th> <td> <input type="password"
                                name="password"
                                id="password"/><br>
-            Confirm New password: <input type="password"
+                               <div id="strength_bar" style="padding-top:5%;"></div>
+                             </td>
+    </tr>
+    <tr>
+      <th style="padding-top:5%;">Confirm New password: </th> <td> <input type="password"
                                name="confirmpwd"
-                               id="confirmpwd" /><br>
+                               id="confirmpwd" /><br> </td>
+    </tr>
+  </table>
             <input type="hidden" name="username" id="username" value=<?php echo $username ?> />
             <input type="hidden" name="email" id="email" value=<?php echo $email?> />
 
@@ -73,8 +84,9 @@ else if($_SERVER["REQUEST_METHOD"] == "POST"){
                             this.form.username,
                             this.form.email,
                             this.form.password,
-                            this.form.confirmpwd);" />
+                            this.form.confirmpwd);" / style="margin-top: 5%; margin-bottom: 2%;">
 
         </form>
 </body>
 </html>
+

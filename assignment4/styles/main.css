@@ -46,8 +46,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   box-shadow: 5px 5px #888888;
 }
 
+.login_form{
+  border-style: groove;
+  margin-top: 5%;
+  margin-left: 65%;
+  padding-top: 15px;
+  padding-left: 50px;
+  width: 30%;
+  border-radius: 20px;
+  box-shadow: 5px 5px #888888;
+}
+
 #register_button {
   margin-bottom: 20px;
   margin-top: 10px;
+}
+
+#login_button{
+  margin-bottom: 7%;
+  margin-top: 7%;
+}
+
+.login_row{
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 

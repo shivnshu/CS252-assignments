@@ -57,13 +57,14 @@ if (login_check($mysqli) == true) {
             background-color: #555;
             color: white;
             padding: 16px 20px;
-            border: none;
+            border: 1px solid #555;
+            border-radius: 10px;
             cursor: pointer;
             opacity: 0.8;
             position: fixed;
             bottom: 23px;
             right: 28px;
-            width: 280px;
+            width: 15%;
             }
 
             /* The popup form - hidden by default */
@@ -121,7 +122,7 @@ if (login_check($mysqli) == true) {
             }
         </style>
     </head>
-    <body>
+    <body style="background-color:#cfdcf7;">
         <?php
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -145,18 +146,25 @@ if (login_check($mysqli) == true) {
             echo '<p class="error">Error Logging In!</p>';
         }
         ?>
-        <form action="includes/process_login.php" method="post" name="login_form">
-            Email: <input type="text" name="email" />
-            Password: <input type="password"
+        <form action="includes/process_login.php" method="post" name="login_form" class="login_form">
+          <table>
+            <tr>
+              <th class="login_row">Email: </th> <td class="login_row"><input type="text" name="email" /></td>
+            </tr>
+            <tr>
+              <th class="login_row">Password: </th> <td class="login-row"><input type="password"
                              name="password"
-                             id="password"/>
+                             id="password"/></td>
+            </tr>
+          </table>
             <input type="button"
                    value="Login"
-                   onclick="formhash(this.form, this.form.password);" />
+                   onclick="formhash(this.form, this.form.password);" id="login_button"/>
         </form>
+        <div style="margin-top: -12%; margin-left: 7%;">
         <p>If you don\'t have a login, please <a href="register.php">register</a></p>
         <p>If you are done, please <a href="includes/logout.php">log out</a>.</p>
-        <p>You are currently logged <?php echo $logged ?>.</p>
+        <p>You are currently logged <?php echo $logged ?>.</p></div>
         <button class="open-button" onclick="openForm()">Forgot Password?</button>
 
         <div class="form-popup" id="myForm">
@@ -171,3 +179,4 @@ if (login_check($mysqli) == true) {
         </div>
     </body>
 </html>
+

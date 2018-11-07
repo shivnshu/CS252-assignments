@@ -24,15 +24,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .error { color: red; }
 
 .bar{
-  background-color: #ddd;
-  border-radius: 2%;
+  background-color: #c5c8cc;
+  border: 1px solid #c5c8cc;
+  border-radius: 7px;
 }
-#score5 {width: 99%; background-color: #1fef48; color: #1fef48;}
-#score4 {width: 80%; background-color: #1fef48; color: #1fef48;}
-#score3 {width: 60%; background-color: #ebf438; color: #ebf438;}
-#score2 {width: 50%; background-color: #f7b24a; color: #f7b24a;}
-#score1 {width: 30%; background-color: #f44336; color: #f44336;}
-#score0 {width: 15%; background-color: #f44336; color: #f44336;}
+#score5 {width: 99%; background-color: #1fef48; color: #1fef48; border: 1px solid #1fef48; border-radius: 7px;}
+#score4 {width: 80%; background-color: #1fef48; color: #1fef48; border: 1px solid #1fef48; border-radius: 7px;}
+#score3 {width: 60%; background-color: #ebf438; color: #ebf438; border: 1px solid #ebf438; border-radius: 7px;}
+#score2 {width: 50%; background-color: #f7b24a; color: #f7b24a; border: 1px solid #f7b24a; border-radius: 7px;}
+#score1 {width: 30%; background-color: #f44336; color: #f44336; border: 1px solid #f44336; border-radius: 7px;}
+#score0 {width: 15%; background-color: #f44336; color: #f44336; border: 1px solid #f44336; border-radius: 7px;}
 
 .registration_form {
   border-style: groove;

@@ -32,7 +32,7 @@ include_once 'includes/functions.php';
 <body style="background-color:#cfdcf7;">
   <!-- Registration form to be output if the POST variables are not
   set or if the registration script caused an error. -->
-  <h1>Register with us</h1>
+  <h1 style="margin-left: 25%;">Register with us</h1>
   <?php
   if (!empty($error_msg)) {
     echo $error_msg;
@@ -48,8 +48,8 @@ include_once 'includes/functions.php';
     echo "</ol>";
   }
   ?>
-  Passwords must contain
-  <ul>
+  <span style="margin-left: 10%;">Passwords must contain</span>
+  <ul style="margin-left: 12%;">
     <li>At least one upper case letter (A..Z)</li>
     <li>At least one lower case letter (a..z)</li>
     <li>At least one number (0..9)</li>
@@ -87,7 +87,7 @@ include_once 'includes/functions.php';
       this.form.password,
       this.form.confirmpwd);" />
     </form>
-    <p>Return to the <a href="index.php">login page</a>.</p>
+    <p style="margin-left: 70%; margin-top: -20%;">Return to the <a href="index.php">login page</a>.</p>
   </body>
   </html>
 
